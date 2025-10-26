@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cam (Auto-answer) - Security Camera</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Cam — Auto-answering Security Camera</h1>
+    <p>Paste your Firebase <code>firebaseConfig</code> into <code>main.js</code> (see README), then open this page and allow camera/microphone access. Enter a Call ID from the viewer to auto-answer.</p>
+
+    <div class="row">
+      <div class="col">
+        <h3>Local preview</h3>
+        <div style="position:relative;display:inline-block">
+          <video id="localVideo" autoplay playsinline muted></video>
+          <canvas id="localOverlay" style="position:absolute;left:0;top:0;pointer-events:none"></canvas>
+        </div>
+      </div>
+      <div class="col">
+        <h3>Link / Status</h3>
+        <label>Camera name (register in database):</label>
+        <input id="cameraNameInput" placeholder="my-front-door" />
+        <div style="margin-bottom:8px"><button id="registerBtn">Register Camera</button></div>
+        <label>Call ID to auto-answer (paste viewer's call id):</label>
+        <input id="callIdInput" placeholder="paste call id here" />
+        <div class="buttons">
+          <button id="startBtn">Start & Listen</button>
+          <button id="stopBtn" disabled>Stop</button>
+        </div>
+        <div id="status">Idle</div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
