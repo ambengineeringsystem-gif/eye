@@ -1,88 +1,9 @@
-:root{
-	--bg:#f5f7fb;
-	--card:#ffffff;
-	--muted:#6b7280;
-	--accent:#0b74ff;
-	--accent-2:#00bfa5;
-	--shadow: 0 6px 20px rgba(22,32,47,0.08);
-}
-
-*{box-sizing:border-box}
-body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:#0f1724; margin:0; padding:18px}
-.container{max-width:1100px;margin:0 auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 6px;margin-bottom:14px}
-.brand{font-weight:800;font-size:1.1rem;color:var(--accent)}
-.top-actions .btn{margin-left:8px}
-
-.layout{display:grid;grid-template-columns:1fr 320px;gap:18px}
-.panel{background:var(--card);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
-.video-panel{display:flex;flex-direction:column;gap:12px}
-.videoWrapper{width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:360px}
-video{background:#000;width:100%;height:auto;max-height:72vh;border-radius:8px;display:block}
-
-.sidebar .controls{display:flex;flex-direction:column;gap:8px}
-.row-actions{display:flex;gap:8px}
-.status{padding:8px;background:#f1f5f9;border-radius:8px;color:var(--muted)}
-
-.cameraList{display:flex;flex-direction:column;gap:8px;max-height:32vh;overflow:auto;padding-top:6px}
-.cameraList .camera-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px;border-radius:8px;border:1px solid #eef3fb}
-.cameraList .camera-row .name{flex:1;font-weight:600}
-.linkedCams{margin-top:8px}
-
-/* Camera row button visuals */
-.cameraList .camera-row button{margin-left:6px}
-.cameraList .camera-row button.btn{padding:6px 10px;border-radius:8px;border:0;font-weight:700;cursor:pointer;font-size:0.92rem}
-.cameraList .camera-row button.btn.small{padding:6px 8px;font-size:0.86rem}
-.cameraList .camera-row button.btn.primary{background:var(--accent);color:#fff}
-.cameraList .camera-row button.btn.secondary{background:var(--accent);color:#fff}
-.cameraList .camera-row button.btn.warn{background:var(--accent);color:#fff}
-.cameraList .camera-row button.btn.ghost{background:var(--accent);color:#fff;border:0}
-.cameraList .camera-row button.btn.toggle-on{background:var(--accent);color:#fff}
-
-
-/* Buttons */
-button.btn{padding:10px 12px;border-radius:10px;border:0;background:var(--accent);color:white;font-weight:700;cursor:pointer}
-button.btn.small{padding:6px 8px;font-size:0.9rem}
-button.btn.secondary{background:var(--accent);color:#fff}
-
-input{width:100%;padding:10px;margin-top:6px;margin-bottom:6px;border-radius:8px;border:1px solid #e6eef7}
-
-/* Motion overlay elements inside video wrapper */
-#videoWrapper{width:100%;height:auto;position:relative}
-#motionOverlay{pointer-events:none}
-#motionBox{transition:all 0.12s ease}
-
-/* Modal alignment (kept small) */
-.alarm-options{display:flex;flex-direction:column;gap:10px;margin-top:6px}
-.alarm-option{display:flex;align-items:center;gap:10px;font-size:1rem}
-.alarm-option input{width:auto;height:auto;margin:0}
-
-/* Polished camera-row grouped layout */
-.cameraList .camera-row{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;border:1px solid #eef3fb;background:linear-gradient(180deg,#ffffff,#fbfdff)}
-.cameraList .camera-row .cam-left{flex:1;min-width:0}
-.cameraList .camera-row .name{font-weight:700;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cameraList .camera-row .device-info{font-size:0.85rem;color:var(--muted);margin-top:4px}
-.cameraList .camera-row .cam-groups{display:flex;gap:8px;align-items:center}
-.cameraList .camera-row .cam-group{display:flex;gap:6px;padding:6px;border-radius:8px;background:#f7fbff;border:1px solid rgba(11,116,255,0.06)}
-.cameraList .camera-row .cam-group.cam-group-alarm{background:linear-gradient(180deg,#fff6f6,#fff);border-color:rgba(255,77,79,0.06)}
-.cameraList .camera-row .cam-actions-right{margin-left:auto;display:flex;gap:8px;align-items:center}
-.cameraList .camera-row .cam-group .btn{padding:6px 8px;font-size:0.86rem;border-radius:8px}
-
-/* Tweak for small screens */
-@media (max-width:520px){
-	.cameraList .camera-row{flex-direction:column;align-items:stretch}
-	.cameraList .camera-row .cam-groups{flex-wrap:wrap}
-	.cameraList .camera-row .cam-actions-right{margin-left:0;justify-content:flex-end}
-}
-
-/* Larger touch targets on small screens */
-@media (max-width:820px){
-	.layout{grid-template-columns:1fr}
-	.videoWrapper{min-height:280px}
-	.panel{padding:12px}
-}
-
-/* Alarm modal radio alignment */
-.alarm-options{display:flex;flex-direction:column;gap:10px;margin-top:6px}
-.alarm-option{display:flex;align-items:center;gap:10px;font-size:1rem}
-.alarm-option input{width:auto;height:auto;margin:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#f7f9fb;color:#111;margin:20px}
+h1{margin-bottom:10px}
+.row{display:flex;gap:20px}
+.col{flex:1}
+video{background:#000;width:100%;height:auto;max-height:480px;border-radius:6px}
+input{width:100%;padding:8px;margin-top:6px;margin-bottom:8px}
+.buttons{display:flex;gap:8px;margin-top:8px}
+button{padding:8px 12px}
+#status{margin-top:12px;padding:10px;background:#fff;border-radius:6px;border:1px solid #e1e7ee}

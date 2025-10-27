@@ -3,84 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Viewer — Watch the Camera</title>
+    <title>Cam (Auto-answer) - Security Camera</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <header class="topbar">
-        <div class="top-actions">
-        </div>
-      </header>
+    <h1>Cam — Auto-answering Security Camera</h1>
+    <p>Paste your Firebase <code>firebaseConfig</code> into <code>main.js</code> (see README), then open this page and allow camera/microphone access. Enter a Call ID from the viewer to auto-answer.</p>
 
-      <main class="layout">
-        <section class="panel video-panel">
-          <div id="videoWrapper" class="videoWrapper" style="position:relative;display:none">
-            <video id="remoteVideo" autoplay playsinline controls></video>
-          <div id="motionOverlay" style="position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;display:none;align-items:center;justify-content:center;">
-            <div id="motionBanner" style="position:absolute;left:50%;top:8%;transform:translateX(-50%);background:rgba(255,0,0,0.85);color:white;padding:8px 12px;border-radius:8px;font-weight:700;z-index:10">MOTION DETECTED</div>
-            <div id="motionBox" style="position:absolute;border:3px solid rgba(255,255,0,0.9);box-shadow:0 0 12px rgba(255,255,0,0.5);display:none;z-index:9"></div>
-          </div>
-          <div id="humanBoxes" style="position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:11"></div>
-          <div id="alarmBanner" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(255,0,0,0.95);color:white;padding:16px 20px;border-radius:12px;font-weight:900;font-size:1.2rem;display:none;z-index:30">ALARM</div>
-          <div id="sleepBanner" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(60,64,67,0.95);color:white;padding:14px 18px;border-radius:10px;font-weight:800;font-size:1.1rem;display:none;z-index:29">SLEEPING</div>
-        </div>
+    <div class="row">
+      <div class="col">
+        <h3>Local preview</h3>
+        <video id="localVideo" autoplay playsinline muted></video>
       </div>
-        </section>
-
-        <aside class="panel sidebar">
-          <div class="controls">
-            <div class="row-actions">
-            </div>
-            <div id="status" class="status">Idle</div>
-          </div>
-
-          <hr />
-
-          <div class="cameras">
-            <div class="cam-header"><strong>Available cameras</strong></div>
-            <div id="cameraList" class="cameraList">(loading...)</div>
-            <hr />
-            <div><strong>Linked cameras</strong></div>
-            <div id="linkedCams" class="linkedCams">(none)</div>
-          </div>
-        </aside>
-      </main>
-    </div>
-        
-        <!-- Alarm settings modal -->
-        <div id="alarmModal" style="display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.4);z-index:200;min-width:280px">
-          <h3 id="alarmModalTitle">Alarm Settings</h3>
-          <div class="alarm-options">
-            <label class="alarm-option"><input type="radio" name="alarmMode" value="motion" checked /> <span>Trigger on Motion</span></label>
-            <label class="alarm-option"><input type="radio" name="alarmMode" value="human" /> <span>Trigger on Smart/Human</span></label>
-            <label class="alarm-option"><input type="radio" name="alarmMode" value="both" /> <span>Trigger on Motion + Human (both)</span></label>
-          </div>
-          <div style="margin-top:8px">
-            <label>Min human confidence: <span id="alarmConfVal">0.48</span></label>
-            <input id="alarmConf" type="range" min="0.3" max="0.9" step="0.02" value="0.48" />
-          </div>
-          <div style="margin-top:8px">
-            <label>Cooldown (seconds):</label>
-            <input id="alarmCooldown" type="number" min="1" max="3600" value="30" style="width:100%" />
-          </div>
-          <div style="margin-top:8px">
-            <label>Arm delay (seconds):</label>
-            <input id="alarmArmDelay" type="number" min="0" max="86400" value="0" style="width:100%" />
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-            <button id="saveAlarmBtn">Save</button>
-            <button id="testAlarmBtn" style="margin-left:8px">Test Alarm</button>
-            <button id="cancelAlarmBtn" class="secondary">Cancel</button>
-          </div>
-          <div style="margin-top:8px">
-            <label style="display:flex;align-items:center;gap:8px"><input id="alarmVoice" type="checkbox" checked /> <span>Enable voice announcements</span></label>
-          </div>
+      <div class="col">
+        <h3>Link / Status</h3>
+        <label>Camera name (register in database):</label>
+        <input id="cameraNameInput" placeholder="my-front-door" />
+        <div style="margin-bottom:8px"><button id="registerBtn">Register Camera</button></div>
+        <label>Call ID to auto-answer (paste viewer's call id):</label>
+        <input id="callIdInput" placeholder="paste call id here" />
+        <div class="buttons">
+          <button id="startBtn">Start & Listen</button>
+          <button id="stopBtn" disabled>Stop</button>
+          <button id="enableAudioBtn" style="margin-left:8px">Enable Audio</button>
         </div>
+        <div id="status">Idle</div>
       </div>
     </div>
-    <!-- Preload alarm audio (placed here so path is relative to viewer page) -->
-    <audio id="alarmAudio" src="alarm.mp3" preload="auto" style="display:none"></audio>
+
+    <!-- Audio to play when alarm is armed remotely -->
+    <audio id="armedAudio" src="armed.mp3" preload="auto" style="display:none"></audio>
 
     <script type="module" src="main.js"></script>
   </body>
